@@ -6,6 +6,7 @@
   "require": {
     "php": "^8.1",
     "symfony/config": "^6.4",
+    "symfony/console": "^6.4",
     "symfony/dependency-injection": "^6.4",
     "symfony/event-dispatcher-contracts": "^2.5 | ^3",
     "symfony/framework-bundle": "^6.4",
@@ -14,7 +15,8 @@
   },
   "require-dev": {
     "phpstan/phpstan": "^2.1",
-    "phpunit/phpunit": "^10.0"
+    "phpunit/phpunit": "^10.0",
+    "symfony/phpunit-bridge": "^6.4"
   },
   "autoload": {
     "psr-4": {

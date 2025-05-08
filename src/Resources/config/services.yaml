@@ -4,5 +4,10 @@ services:
     autowire: true      # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+  # 事件类
+  WechatWorkMiniProgramBundle\Event\:
+    resource: '../../Event/'
+
+  # 命令类
   WechatWorkMiniProgramBundle\Command\:
     resource: '../../Command/'
