@@ -1,9 +1,10 @@
 <?php
 
-namespace WechatWorkMiniProgramBundle\Tests\Integration;
+namespace WechatWorkMiniProgramBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Tourze\IntegrationTestKernel\IntegrationTestKernel;
 use WechatWorkMiniProgramBundle\WechatWorkMiniProgramBundle;
 
 /**
@@ -11,9 +12,19 @@ use WechatWorkMiniProgramBundle\WechatWorkMiniProgramBundle;
  */
 class BundleIntegrationTest extends KernelTestCase
 {
-    protected static function getKernelClass(): string
+    protected static function createKernel(array $options = []): KernelInterface
     {
-        return IntegrationTestKernel::class;
+        $env = $options['environment'] ?? $_ENV['APP_ENV'] ?? $_SERVER['APP_ENV'] ?? 'test';
+        $debug = $options['debug'] ?? $_ENV['APP_DEBUG'] ?? $_SERVER['APP_DEBUG'] ?? true;
+
+        return new IntegrationTestKernel($env, $debug, [
+            WechatWorkMiniProgramBundle::class => ['all' => true],
+        ]);
+    }
+
+    protected function setUp(): void
+    {
+        self::bootKernel();
     }
 
     /**
@@ -21,7 +32,6 @@ class BundleIntegrationTest extends KernelTestCase
      */
     public function testBundleRegistration(): void
     {
-        self::bootKernel();
         $kernel = self::$kernel;
 
         // 验证内核实例
@@ -46,7 +56,6 @@ class BundleIntegrationTest extends KernelTestCase
      */
     public function testContainerAvailability(): void
     {
-        self::bootKernel();
         $container = self::getContainer();
 
         // 验证容器实例
