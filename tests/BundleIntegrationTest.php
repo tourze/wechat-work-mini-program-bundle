@@ -12,6 +12,10 @@ use WechatWorkMiniProgramBundle\WechatWorkMiniProgramBundle;
  */
 class BundleIntegrationTest extends KernelTestCase
 {
+    /**
+     * @param array<string, mixed> $options
+     * @phpstan-ignore-next-line
+     */
     protected static function createKernel(array $options = []): KernelInterface
     {
         $env = $options['environment'] ?? $_ENV['APP_ENV'] ?? $_SERVER['APP_ENV'] ?? 'test';

@@ -10,9 +10,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * 测试命令
  */
-#[AsCommand(name: 'wechat-work:test', description: '测试命令')]
+#[AsCommand(name: self::NAME, description: '测试命令')]
 class TestCommand extends Command
 {
+    public const NAME = 'wechat-work:test';
+
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('测试命令执行成功');
