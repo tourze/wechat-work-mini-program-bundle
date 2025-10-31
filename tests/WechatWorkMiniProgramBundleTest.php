@@ -1,25 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WechatWorkMiniProgramBundle\Tests;
 
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use Tourze\PHPUnitSymfonyKernelTest\AbstractBundleTestCase;
 use WechatWorkMiniProgramBundle\WechatWorkMiniProgramBundle;
 
 /**
- * WechatWorkMiniProgramBundle 单元测试
+ * @internal
  */
-class WechatWorkMiniProgramBundleTest extends TestCase
+#[CoversClass(WechatWorkMiniProgramBundle::class)]
+#[RunTestsInSeparateProcesses]
+final class WechatWorkMiniProgramBundleTest extends AbstractBundleTestCase
 {
-    /**
-     * 测试 Bundle 实例化
-     */
-    public function testBundleInstance(): void
-    {
-        $bundle = new WechatWorkMiniProgramBundle();
-
-        // 验证 Bundle 实例类型
-        $this->assertInstanceOf(Bundle::class, $bundle);
-        $this->assertInstanceOf(WechatWorkMiniProgramBundle::class, $bundle);
-    }
 }

@@ -1,28 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WechatWorkMiniProgramBundle\Tests\Command;
 
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\Console\Application;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
+use Tourze\PHPUnitSymfonyKernelTest\AbstractCommandTestCase;
 use WechatWorkMiniProgramBundle\Command\TestCommand;
 
 /**
  * TestCommand 单元测试
+ *
+ * @internal
  */
-class TestCommandTest extends TestCase
+#[CoversClass(TestCommand::class)]
+#[RunTestsInSeparateProcesses]
+final class TestCommandTest extends AbstractCommandTestCase
 {
-    private CommandTester $commandTester;
-
-    protected function setUp(): void
+    protected function onSetUp(): void
     {
-        $command = new TestCommand();
+        // Command测试不需要特殊设置
+    }
 
-        $application = new Application();
-        $application->add($command);
+    protected function getCommandTester(): CommandTester
+    {
+        $command = self::getService(TestCommand::class);
 
-        $this->commandTester = new CommandTester($command);
+        return new CommandTester($command);
     }
 
     /**
@@ -30,14 +37,16 @@ class TestCommandTest extends TestCase
      */
     public function testExecute(): void
     {
+        $commandTester = $this->getCommandTester();
+
         // 执行命令
-        $statusCode = $this->commandTester->execute([]);
+        $statusCode = $commandTester->execute([]);
 
         // 检查返回状态码
         $this->assertEquals(Command::SUCCESS, $statusCode);
 
         // 检查输出内容
-        $output = $this->commandTester->getDisplay();
+        $output = $commandTester->getDisplay();
         $this->assertStringContainsString('测试命令执行成功', $output);
     }
 }
