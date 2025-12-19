@@ -7,7 +7,7 @@ namespace WechatWorkMiniProgramBundle\DependencyInjection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Tourze\SymfonyDependencyServiceLoader\AutoExtension;
 
-class WechatWorkMiniProgramExtension extends AutoExtension
+final class WechatWorkMiniProgramExtension extends AutoExtension
 {
     protected function getConfigDir(): string
     {
